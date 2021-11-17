@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Contact{% endblock %}
+
+
+{% block content %}
+<div class="features">
+    {% if user.is_authenticated %}
+    <h1>Hello {{ user.username }}</h1>
+    <form action="{% url 'logout' %}" method="POST">
+    {% csrf_token %}
+        <input type="hidden">
+    <button type="submit" class='btn btn-secondary'><i class="fas fa-sign-out-alt"></i> Log out</button>
+        
+    </form>
+    {% endif %}
+    <h1>Telegram: @youngerwolf</hq>
+    <p>Phone number: +998946660727</p>
+</div>
+{% endblock %}

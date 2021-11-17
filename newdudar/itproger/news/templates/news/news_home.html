@@ -1,0 +1,48 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}News{% endblock %}
+
+{% block content %}
+<p>{{ datum }}</p>
+<div class="features">
+    <h1>Recent News</h1>
+  {% if news %}
+    {% for element in page_obj %}
+      <div class="card text-white bg-primary mb-3" style="max-width: 25rem; margin: auto;">
+          <div class="card-header">Test News <a href="{% url 'home' %}"><i class="fas fa-arrow-circle-right"></i></a></div>
+          <div class="card-body">
+            <h5 class="card-title">{{ element.title }}</h5>
+            <p class="card-text">{{ element.full_text }}</p>
+            <a href="{% url 'news-detail' element.id %}"><button class="btn btn-secondary"><i class="fas fa-info-circle"></i> More</button></a>
+            {% if user.is_staff %}
+            <a href="{% url 'news-update' element.id %}"><button class="btn btn-warning"><i class="fas fa-edit"></i> Edit</button></a>
+            <a href="{% url 'news-delete' element.id %}"><button class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button></a>
+            {% endif %}
+          </div>
+      </div>
+    {% endfor %}
+    <div class="pagination" style="position: relative; left: 100px;">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+              <a href="?page=1">&laquo; first</a>
+              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+  
+          <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+  
+          {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">next</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
+  {% else %}
+    <p>There is no any news yet.</p>
+    {% if user.is_staff %}
+    <a href="{% url 'create' %}"><button class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add</button></a>
+      {% endif %}
+    {% endif %}
+    
+{% endblock %}

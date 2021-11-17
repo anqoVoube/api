@@ -1,0 +1,33 @@
+{% extends 'main/layout.html' %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div style="margin: auto; width: 555px; height: 605px; position: relative; top: -20px;
+box-shadow: 2px 2px 8px 1px #fff; background: rgb(179, 199, 207)">
+
+<form method="POST" style="margin: auto;">
+    {% csrf_token %}
+    <div class="form-group">
+        <br>
+        <label for="exampleInputEmail1">First name</label>
+        <input type="text" name="first_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="margin-bottom: 20px;" placeholder="First name">
+        <label for="exampleInputEmail1">Last name</label>
+        
+      <input type="text" name="last_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="margin-bottom: 20px;" placeholder="Last name">
+      <label for="exampleInputEmail1">Username</label>
+        <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="margin-bottom: 20px;" placeholder="Username">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1" style="margin-top: 20px;">Password</label>
+      <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <label for="exampleInputPassword1" style="margin-top: 20px;">Repeat password</label>
+      <input type="password" name="password2" class="form-control" id="exampleInputPassword1" placeholder="Repeat password">
+    </div>
+    <br>
+    <a href="#"><button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Sign up</button></a>
+  </form>
+</div>
+{% endblock %}

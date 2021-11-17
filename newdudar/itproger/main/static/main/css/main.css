@@ -1,0 +1,88 @@
+body {
+    background: #2c2c2c;
+}
+
+aside {
+    float: left;
+    background: #181818;
+    width: 20%;
+    padding: 2.5%;
+    height: 100vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d
+}
+
+aside img {
+    width: 80px;
+    float: left;
+}
+
+aside .logo {
+    font-size: 20px;
+    margin-left: 10px;
+    font-weight: bold;
+    top: 15px;
+}
+aside ul a{
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    transition: all .6s ease;
+}
+aside ul i{
+    float: left;
+    margin-right: 3px;
+    margin-top: 5px;
+}
+aside i:hover aside ul a:hover{
+    color: #0D6EFD;
+
+}
+aside h3 {
+    margin-top: 50px;
+    font-size: 28px; 
+}
+
+main .features{
+    color: #fff;
+    text-align: center;
+    margin-left: 80px;
+    
+}
+
+form {
+    margin-left: 32%;
+    width: 500px;
+    margin-top: 50px;
+}
+.date {
+    font-size: 11px
+}
+
+.comment-text {
+    font-size: 12px
+}
+
+.fs-12 {
+    font-size: 12px
+}
+
+.shadow-none {
+    box-shadow: none
+}
+
+.name {
+    color: #007bff
+}
+
+.cursor:hover {
+    color: blue
+}
+
+.cursor {
+    cursor: pointer
+}
+
+.textarea {
+    resize: none
+}

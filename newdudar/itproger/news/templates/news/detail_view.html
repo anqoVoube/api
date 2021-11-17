@@ -1,0 +1,61 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}{{ articles.title }}{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>{{ articles.title }}</h1>
+    <p>{{ articles.date }}</p>
+    <h6 style="width: 500px; margin:auto;">{{ articles.full_text }}</h6>
+
+</div>
+{% for datumishe in datumo %}
+<div class="container mt-5" style="width: 1400px;">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-8">
+            <div class="d-flex flex-column comment-section">
+                <div class="bg-white p-2">
+                    <div class="d-flex flex-row user-info"><img class="rounded-circle" src="{% static 'main/img/no-user.jpg' %}" width="50">
+                        <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">&nbsp;{{ datumishe.user }}</span><span class="date text-black-50">&nbsp;{{ datumishe.timedate }}</span></div>
+                    </div>
+                    <div class="mt-2">
+                        <p class="comment-text">{{ datumishe.text }}</p>
+                        
+                    </div>
+                </div>
+                <div class="bg-white">
+                    <div class="d-flex flex-row fs-12" style="position: relative; top: -20px;">
+                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+                        <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
+                        <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                        <div class="like p-2 cursor">{% if user.is_authenticated %}
+                            {% if user.username == datumishe.user %}
+                            <a href="{% url 'delete-review' datumishe.id %}">
+                            <button class='btn btn-danger'>Delete</button>
+                            </a>
+                            {% endif %}
+                            {% endif %}</div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% if user.is_authenticated %}
+<form action="{% url 'reviews' articles.id %}" method="POST">
+    {% csrf_token %}
+<div class="bg-light p-2">
+    
+    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="{% static 'main/img/no-user.jpg' %}" width="40"><input type="text" name="textfield" placeholder="Type your text here..."></div>
+    <div class="mt-2 text-right"  style="position: relative; left: 40px;"><button class="btn btn-primary btn-sm shadow-none" type="submit">Post comment</button></div>
+</div>
+</form>
+
+{% endif %}
+<br>
+<br>
+<br>
+
+{% endblock %}
